@@ -14,7 +14,6 @@ client
 ⋅⋅⋅⋅⋅⋅⋅⋅home.controller.js * home controller
 ⋅⋅⋅⋅⋅⋅⋅⋅home.scss * home styles
 ⋅⋅⋅⋅⋅⋅⋅⋅home.html * home template
-⋅⋅⋅⋅⋅⋅⋅⋅home.spec.js * home specs (for entry, component, and controller)
 ```
 
 # Getting Started
