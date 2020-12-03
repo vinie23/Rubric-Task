@@ -1,0 +1,74 @@
+<section class="home">
+  <h1>Followers List</h1>
+  <div class="row m-b-10">
+      <p class="col-sm-12">Sort By</p>
+        <div class="btn-group" >
+            <button class="btn btn-primary" ng-class="{active:$ctrl.sortvalue=='twubric.total'}" ng-click="$ctrl.sortData('twubric.total')">Twubric Score 
+                <img ng-if="$ctrl.sortvalue=='twubric.total' && $ctrl.sortOrder==true" src="up.png" class="img"/><img src="down.png" ng-if="$ctrl.sortvalue=='twubric.total' && $ctrl.sortOrder==false" class="img"/>
+            </button>
+            <button class="btn btn-primary" ng-class="{active:$ctrl.sortvalue=='twubric.friends'}" ng-click="$ctrl.sortData('twubric.friends')">Friends
+            <img ng-if="$ctrl.sortvalue=='twubric.friends' && $ctrl.sortOrder==true" src="up.png" class="img"/><img src="down.png" ng-if="$ctrl.sortvalue=='twubric.friends' && $ctrl.sortOrder==false" class="img"/>
+            </button>
+            <button class="btn btn-primary" ng-class="{active:$ctrl.sortvalue=='twubric.influence'}" ng-click="$ctrl.sortData('twubric.influence')">Influence
+                <img ng-if="$ctrl.sortvalue=='twubric.influence' && $ctrl.sortOrder==true" src="up.png" class="img"/><img src="down.png" ng-if="$ctrl.sortvalue=='twubric.influence' && $ctrl.sortOrder==false" class="img"/>
+            </button>
+            <button class="btn btn-primary" ng-class="{active:$ctrl.sortvalue=='twubric.chirpiness'}" ng-click="$ctrl.sortData('twubric.chirpiness')">Chirpiness
+                <img ng-if="$ctrl.sortvalue=='twubric.chirpiness' && $ctrl.sortOrder==true" src="up.png" class="img"/><img src="down.png" ng-if="$ctrl.sortvalue=='twubric.chirpiness' && $ctrl.sortOrder==false" class="img"/>
+            </button>
+        </div>
+  </div>
+  
+ 
+  <div class="row">
+      <p class="col-sm-12">Joined Twitter Between</p>
+      <div class="col-sm-12 m-b-10">
+        <md-content  layout="column" layout-gt-sm="row"
+            layout-padding ng-cloak>
+            <div><span>Start Date</span>
+                <md-datepicker ng-model="$ctrl.startDate" ng-change="$ctrl.datechange()" md-max-date = "$ctrl.maxDate" md-placeholder="Start date"></md-datepicker>
+            </div>
+        <div>
+            <span>End Date</span>
+            <md-datepicker ng-model="$ctrl.endDate" ng-change="$ctrl.filterBydate()" md-max-date = "$ctrl.maxDate" md-min-date = "$ctrl.minDate" md-placeholder="End date"></md-datepicker>
+        </div>
+</md-content>
+      </div>
+  </div>
+
+  
+  <div class="row">
+      <div class="col-sm-4 m-b-10 slide" ng-repeat="user in $ctrl.users|orderBy:$ctrl.sortvalue:$ctrl.sortOrder|datefilter:$ctrl.filterstartdate:$ctrl.filterenddate">
+          <div class="col-sm-12 contain">
+          <div class="col-sm-12">
+              <div class="row">
+              <div class="col-sm-8">{{user.fullname}}</div>
+              <div class="col-sm-4  text-right">{{user.twubric.total}}</div>
+              </div>
+          </div>
+          <div class="col-sm-12 bg-white">
+              <div class="row">
+              <div class="col-sm-4 border-t-l text-center">
+                  
+                  {{user.twubric.friends}}<br>
+                  Friends
+              </div>
+                  <div class="col-sm-4 border-t-l text-center">
+                      {{user.twubric.influence}}<br>
+                      influence
+                  </div>
+                  <div class="col-sm-4 border-t text-center">
+                      {{user.twubric.chirpiness}}<br>
+                      chirpiness
+                  </div>
+              </div>
+          </div>
+          <div class="col-sm-12 bg-white">
+              <div class="row">
+              <div class="col-sm-4 border-t-l text-center font-14">{{user.join_date*1000|date}}</div>
+              <div class="col-sm-8 border-t  text-right"><a class="btn" ng-click="$ctrl.remove($index)">Remove</a></div>
+              </div>
+          </div>
+      </div>
+      </div>
+  </div>
+</section>
